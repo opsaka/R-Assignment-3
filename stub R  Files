@@ -1,0 +1,39 @@
+getwd()
+setwd("C:/Users/ADMIN/Documents/R/Rprogramming")
+getwd()
+dir()
+list(dir())
+
+## My R programming assignment 3 - Week Three of the R Programming Course
+## A  pair of functions that cache the inverse of a matrix.
+## The first function
+
+makeCacheMatrix <- function(m = matrix()) {
+  MatInv <- NULL
+  
+  setinverse <- function(matrix = matrix()){
+    m <<- matrix
+  }
+  
+  getMatrix <- function() m
+  
+  Inverse <- function(matxInverse = matrix()){ 
+    MatInv <<- matxInverse
+  } 
+  getInverse <- function() MatInv
+  list(get = getMatrix, set = setMatrix, getI = getInverse, setI = setInverse)
+}
+
+
+
+
+cacheSolve <- function(m, ...) {
+  ## Return a matrix that is the inverse of 'm' 
+  
+  if(is.null(m$getI())){
+    print("Not cached. Recomputing...") 
+    m$setI(solve(m$get()))
+  }else {print("Found in cache")}
+  
+  m$getI()
+}
